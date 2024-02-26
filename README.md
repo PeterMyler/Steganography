@@ -19,9 +19,9 @@ pip install pillow
 First the user specifies a message they want to encode and the image file to use. The program then:
 1. Adds a special set of characters ("!EOF!") to the end of the message so the it knows where to stop when it's decoding the image.
 2. Converts each character in the message to an 8 bit number (using ASCII) and joins them all together into one long string of 1s and 0s.
-3. Goes through each colour component of each pixel in the image (left-to-right, top-to-bottom) and change the LSB to match the binary message.
+3. Goes through each colour component (in RGB order) of each pixel in the image (left-to-right, top-to-bottom) and change the LSB to match the binary message.
 
 ## Decoding
-Decoding is as simple as going through each colour component of each pixel and getting its LSB. 
+The user specifies which image to decode. After that it is as simple as going through each colour component of each pixel and getting it's LSB (in RGB order).
 Every 8 bits can be converted back into a character. Once the special end-signifying charcters are reached the program stops decoding and outputs the result.
 
