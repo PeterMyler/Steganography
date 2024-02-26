@@ -1,8 +1,5 @@
 from PIL import Image
-from cv2 import imread
 DATA_END = "!EOF"
-s = open("e.txt", "r").read()
-
 
 
 def decodeData(img_path):
@@ -12,8 +9,9 @@ def decodeData(img_path):
     full_bin = ""
     # go through each pixel
     for pixel in pixel_values:
-        rb, gb, bb = map(bin, pixel)  # get binary string for each colour value
-        full_bin += rb[-1] + gb[-1] + bb[-1]  # add last bit of each value to the full string
+        # get binary string for each colour value
+        # add last bit of each value to the full string
+        full_bin += sum(bin(p)[-1] for p in pixel)
 
     output = ""
     # go through full binary string in groups of 8
@@ -61,7 +59,7 @@ if inp == "e":
     # encode
     data = input("Enter the data you want to encode: ")
     path = input("Enter the image name (without extension): ") + ".png"
-    encodeData(path, s)
+    encodeData(path, data)
     print("Done!")
 elif inp == "d":
     # decode
