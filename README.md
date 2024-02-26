@@ -9,8 +9,8 @@ Here I implemented a solution that encodes a string into an image and decodes a 
 I used the LSB (Least Significant Bit) of each individual RGB value of each pixel to map a series of 1s and 0s to. This way each pixel can store 3 bits.
 This does change the actual colour of the pixel but the difference is so small it isn't visible at all.
 
-## Libraries
-PIL (pillow)
+## Requirements
+Uses PIL (pillow)
 ```
 pip install pillow
 ```
