@@ -9,7 +9,7 @@ def decodeData(img_path):
     full_bin = ""
     for pixel in pixel_values:
         # get binary string for each colour value and combine last bit of each value
-        full_bin += sum(bin(p)[-1] for p in pixel)
+        full_bin += "".join(bin(p)[-1] for p in pixel[:3])
 
     output = ""
     # go through full binary string in groups of 8 bits
@@ -20,7 +20,7 @@ def decodeData(img_path):
         # make sure the ascii value is valid
         # if it's not -> append "?" instead
         if (ascii_value == 10) or (32 <= ascii_value <= 126):
-            output += chr(num)
+            output += chr(ascii_value)
         else:
             output += "?"
 
@@ -67,7 +67,6 @@ def main():
 
         encodeData(path, data)
         print("Encoding completed!")
-
     elif inp == "d":  # decode from image
         path = input("Enter the image filename: ")
         if "." not in path: path += ".png"
